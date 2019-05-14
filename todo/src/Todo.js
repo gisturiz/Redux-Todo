@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { addTodo } from "./actions/index";
+import { addTodo, toggleTodo } from "./actions/index";
 
 class Todo extends Component {
     state = {
@@ -17,13 +17,28 @@ class Todo extends Component {
         this.setState({newTodo:''});
     }
 
+    toggleTodo = id => {
+        this.setState({
+            newTodo: this.state.newTodo.map(event =>
+            event.id === id ? { ...event, completed: !event.completed } : event
+          )
+        });
+      };
+    
+    removeDone = e => {
+        e.preventDefault();
+        this.setState({
+            newTodo: this.state.newTodo.filter(event => !event.completed)
+        });
+      };
+
     render() {
         return (
             <div>
                 <h1 className="title">Add To Do</h1>
                 {this.props.todo &&
                 this.props.todo.map((atodo, index) => (
-                    <h4 key={index}>
+                    <h4 onClick= { () => this.props.toggleTodo(this.props.newTodo.id)} key={index}>
                     {atodo.value}
                     {atodo.completed}
                     </h4>
@@ -36,6 +51,7 @@ class Todo extends Component {
                         name="todo"
                         onChange={this.handleChanges} />
                         <button onClick={this.addTodo}>Add To Do</button>
+                        <button onClick={this.removeDone}>Remove Completed</button>
                 </form>
             </div>
         )
@@ -43,9 +59,10 @@ class Todo extends Component {
 }
 
 const mapStateToProps = state => {
+    console.log(state)
     return {
         todo: state.todo
     };
 };
 
-export default connect(mapStateToProps, { addTodo })(Todo);
+export default connect(mapStateToProps, { addTodo, toggleTodo })(Todo);
