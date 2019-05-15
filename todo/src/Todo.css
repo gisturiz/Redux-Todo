@@ -1,0 +1,15 @@
+.body {
+    margin: auto;
+    width: 600px;
+    height: 700px;
+    border: 1px solid lightgray;
+    border-radius: 1%;
+}
+
+.title {
+    text-align: center;
+}
+
+.form {
+    text-align: center;
+}
