@@ -29,7 +29,7 @@ class Todo extends Component {
 
     render() {
         return (
-            <div>
+            <div className="window">
                 <div className="body">
                     <h1 className="title">Add To Do</h1>
                     {this.props.todo &&

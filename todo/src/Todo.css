@@ -1,9 +1,14 @@
+.window {
+    background-color: lightgrey;
+}
+
 .body {
     margin: auto;
     width: 600px;
     height: 700px;
     border: 1px solid lightgray;
     border-radius: 1%;
+    background-color: white;
 }
 
 .title {
@@ -11,5 +16,9 @@
 }
 
 .form {
+    text-align: center;
+}
+
+h4 {
     text-align: center;
 }
